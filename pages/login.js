@@ -18,9 +18,10 @@ const LoginPage = () => {
     },
     onSuccess: async (loginResponse) => {
       // setUser(loginResponse.profileObj);
-      console.log(loginResponse);
+      // console.log(loginResponse);
       localStorage.setItem("test_token",loginResponse.accessToken);
-      router.push(router.query.from && decodeURIComponent(router.query.from) ?? '/');
+      console.log(decodeURIComponent(router.query.from));
+      router.push(router.query.from ? decodeURIComponent(router.query.from) : '/');
     },
     onFailure: (error) => {
       // console.log("onFailure", error);

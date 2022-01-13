@@ -10,10 +10,10 @@ const login = '/login'; // Define your login route address.
  */
 const checkUserAuthentication = () => {
   const token = typeof window !== "undefined" && localStorage.getItem('test_token');
-  if(!token) {
+  if (!token) {
     return { auth: null };
-  } else return {auth:true};
-   // change null to { isAdmin: true } for test it.
+  } else return { auth: true };
+  // change null to { isAdmin: true } for test it.
 };
 
 export default WrappedComponent => {
@@ -26,15 +26,15 @@ export default WrappedComponent => {
     if (!userAuth?.auth) {
       // Handle server-side and client-side rendering.
       if (context.res) {
-        context.res?.writeHead(302, {
-          Location: `/login?from=${encodeURIComponent(context.asPath)}`,
+        context.res.writeHead(302, {
+          Location: `/login?from=${encodeURIComponent(context.asPath)}`
         });
-        context.res?.end();
+        context.res.end();
       } else {
         Router.replace(`/login?from=${encodeURIComponent(Router.asPath)}`);
       }
     } else if (WrappedComponent.getInitialProps) {
-      const wrappedProps = await WrappedComponent.getInitialProps({...context, auth: userAuth});
+      const wrappedProps = await WrappedComponent.getInitialProps({ ...context, auth: userAuth });
       return { ...wrappedProps, userAuth };
     }
 

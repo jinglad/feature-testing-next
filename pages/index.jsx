@@ -11,6 +11,8 @@ import Head from "next/head";
 import Script from "next/script";
 // import "/pollfishConfig.js";
 // import {name} from "/pollfishConfig.js";
+import Recorder from "../components/mp3-recording";
+import ClassRecorder from "../components/ClassRecorder";
 
 const Home = () => {
   // const addPaypalScript = () => {
@@ -103,6 +105,8 @@ const Home = () => {
           <a>Login Page</a>
         </Link>
       </div>
+      {/* <Recorder /> */}
+      <ClassRecorder />
     </div>
   );
 };
